@@ -1,0 +1,7 @@
+{
+  "name": "ag-util-esp32",
+  "version": "0.1.0",
+  "description": "AG utilities ESP32",
+  "author": "Andrés González",
+  "license": "MIT"
+}
