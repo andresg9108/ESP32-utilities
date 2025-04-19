@@ -1,5 +1,10 @@
 # AG utilities ESP32
 
+The utilities for this project can be installed with the following npm command.
+Las utilidades para este proyecto se pueden instalar con el siguiente comando npm.
+~~~
+npm i ag-util-esp32 --save
+~~~
 
 Example of creating a component.
 Ejemplo de creación de un componente.
@@ -25,6 +30,14 @@ set(EXTRA_COMPONENT_DIRS
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(example)
+~~~
+
+Example of including files in the main/CMakeLists.txt
+Ejemplo de inclusión de archivos en el archivo main/CMakeLists.txt
+~~~
+idf_component_register(SRCS "example.c"
+                        INCLUDE_DIRS "."
+                        EMBED_FILES index.html)
 ~~~
 
 Example of creating variables for the menuconfig of an ESP32 project.
