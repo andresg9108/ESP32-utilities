@@ -1,0 +1,4 @@
+ble/sdkconfig
+ble/sdkconfig.old
+ble/managed_components/
+ble/dependencies.lock

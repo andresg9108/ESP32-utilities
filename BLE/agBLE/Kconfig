@@ -1,0 +1,25 @@
+menu "AG BLE configuration"
+
+config AGBLE_CLIENT_ENABLED
+    bool "Enable AG BLE central/client"
+    depends on BT_ENABLED && BT_NIMBLE_ENABLED
+    depends on BT_NIMBLE_ROLE_CENTRAL && BT_NIMBLE_ROLE_OBSERVER && BT_NIMBLE_GATT_CLIENT
+    depends on BT_NIMBLE_GATT_SERVER
+    default y
+    help
+        ESP-IDF 5.4.2 NimBLE teardown also requires SDK GATT server support,
+        even when the AG BLE server implementation is disabled.
+
+config AGBLE_SERVER_ENABLED
+    bool "Enable AG BLE peripheral/server"
+    depends on BT_ENABLED && BT_NIMBLE_ENABLED
+    depends on BT_NIMBLE_ROLE_PERIPHERAL && BT_NIMBLE_ROLE_BROADCASTER && BT_NIMBLE_GATT_SERVER
+    default y
+
+config AGBLE_STOP_TIMEOUT_MS
+    int "Host task exit timeout (milliseconds)"
+    depends on AGBLE_CLIENT_ENABLED || AGBLE_SERVER_ENABLED
+    range 100 60000
+    default 5000
+
+endmenu

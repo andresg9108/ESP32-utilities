@@ -1,0 +1,60 @@
+menu "AG Wi-Fi configuration"
+
+config ESP_WIFI_SSID
+    string "Wi-Fi SSID"
+    default ""
+
+config ESP_WIFI_PASSWORD
+    string "Wi-Fi password"
+    default ""
+
+config ESP_MAXIMUM_RETRY
+    int "Maximum reconnection attempts"
+    range 0 100
+    default 5
+
+config AGWIFI_CONNECT_TIMEOUT_MS
+    int "Connection timeout (milliseconds)"
+    range 1000 3600000
+    default 30000
+
+choice ESP_WIFI_SAE_MODE
+    prompt "WPA3 SAE mode"
+    default ESP_WPA3_SAE_PWE_BOTH
+
+config ESP_WPA3_SAE_PWE_HUNT_AND_PECK
+    bool "Hunt and Peck"
+config ESP_WPA3_SAE_PWE_HASH_TO_ELEMENT
+    bool "Hash to Element"
+config ESP_WPA3_SAE_PWE_BOTH
+    bool "Both"
+endchoice
+
+config ESP_WIFI_PW_ID
+    string "SAE H2E password identifier"
+    depends on ESP_WPA3_SAE_PWE_HASH_TO_ELEMENT || ESP_WPA3_SAE_PWE_BOTH
+    default ""
+
+choice ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD
+    prompt "Minimum accepted authentication mode"
+    default ESP_WIFI_AUTH_WPA2_PSK
+
+config ESP_WIFI_AUTH_OPEN
+    bool "Open"
+config ESP_WIFI_AUTH_WEP
+    bool "WEP"
+config ESP_WIFI_AUTH_WPA_PSK
+    bool "WPA PSK"
+config ESP_WIFI_AUTH_WPA2_PSK
+    bool "WPA2 PSK"
+config ESP_WIFI_AUTH_WPA_WPA2_PSK
+    bool "WPA/WPA2 PSK"
+config ESP_WIFI_AUTH_WPA3_PSK
+    bool "WPA3 PSK"
+config ESP_WIFI_AUTH_WPA2_WPA3_PSK
+    bool "WPA2/WPA3 PSK"
+config ESP_WIFI_AUTH_WAPI_PSK
+    bool "WAPI PSK"
+endchoice
+
+endmenu
